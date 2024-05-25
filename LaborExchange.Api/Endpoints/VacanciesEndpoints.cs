@@ -1,4 +1,5 @@
 ﻿using LaborExchange.Api.Dto.Vacancies;
+using LaborExchange.Api.Mapping;
 
 namespace LaborExchange.Api;
 

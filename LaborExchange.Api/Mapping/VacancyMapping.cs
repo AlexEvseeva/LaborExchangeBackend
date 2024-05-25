@@ -1,6 +1,6 @@
 ﻿using LaborExchange.Api.Dto.Vacancies;
 
-namespace LaborExchange.Api;
+namespace LaborExchange.Api.Mapping;
 
 public static class VacancyMapping
 {
@@ -14,7 +14,7 @@ public static class VacancyMapping
         newVacancy.LivingCondition,
         newVacancy.Requirements
     );
-    
+
     public static VacancyDto ToDto(this UpdateVacancyDto newVacancy) =>
     new VacancyDto(
         newVacancy.Id,
