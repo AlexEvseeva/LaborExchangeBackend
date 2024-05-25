@@ -6,7 +6,7 @@ public record class CreateResumeDto
 (
     [Required] string FirstName,
     [Required] string LastName,
-    string? Profession,
+    [Required] int ProfessionId,
     string? Education,
     string? LastPositionFirm,
     string? LastPositionName,

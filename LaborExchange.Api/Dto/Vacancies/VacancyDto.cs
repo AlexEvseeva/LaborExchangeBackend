@@ -1,9 +1,11 @@
-﻿namespace LaborExchange.Api.Dto.Vacancies;
+﻿using LaborExchange.Api.Dto.Profession;
+
+namespace LaborExchange.Api.Dto.Vacancies;
 
 public record class VacancyDto(
     int Id,
     string FirmName,
-    string Position,
+    ProfessionDto Position,
     string? WorkingCondition,
     decimal Payment,
     string? LivingCondition,

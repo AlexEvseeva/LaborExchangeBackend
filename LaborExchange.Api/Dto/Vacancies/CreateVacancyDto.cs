@@ -5,7 +5,7 @@ namespace LaborExchange.Api.Dto.Vacancies;
 public record class CreateVacancyDto
 (
     [Required] string FirmName,
-    [Required] string Position,
+    [Required] int ProfessionId,
     string WorkingCondition,
     [Range(0, 120_000_000)] decimal Payment,
     string LivingCondition,

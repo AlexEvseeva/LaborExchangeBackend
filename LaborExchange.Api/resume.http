@@ -1,0 +1,46 @@
+GET http://localhost:5109/resume
+
+###
+GET http://localhost:5109/resume/2
+
+###
+POST http://localhost:5109/resume
+Content-Type: application/json
+
+{
+    "firstName": "Іван",
+    "lastName": "Дрогобрат",
+    "profession": "UI/UX designer",
+    "education": "ХНУРЕ, економіка та дизайн",
+    "lastPositionFirm": null,
+    "LastPositionName": null,
+    "ReasonOfDismissal": null,
+    "MartialStatus": "Одружений",
+    "LivingCondition": "В наявності",
+    "Email": "i.drog@gmail.com",
+    "Phone": "+30675554422",
+    "Requirements": "Розробка макетів мобільних застосунків"
+}
+
+###
+PUT http://localhost:5109/resume/3
+Content-Type: application/json
+
+{
+    "id": 3,
+    "firstName": "Іван",
+    "lastName": "Дрогобрат",
+    "profession": "UI/UX designer",
+    "education": "Інститут культури, економіка та дизайн",
+    "lastPositionFirm": null,
+    "LastPositionName": null,
+    "ReasonOfDismissal": null,
+    "MartialStatus": "Одружений",
+    "LivingCondition": "В наявності",
+    "Email": "i.drog@gmail.com",
+    "Phone": "+30675554422",
+    "Requirements": "Розробка макетів мобільних застосунків"
+}
+
+###
+DELETE http://localhost:5109/resume/2

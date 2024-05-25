@@ -1,11 +1,13 @@
-﻿namespace LaborExchange.Api.Dto.Resume;
+﻿using LaborExchange.Api.Dto.Profession;
+
+namespace LaborExchange.Api.Dto.Resume;
 
 public record class ResumeDto
 (
     int Id,
     string FirstName,
     string LastName,
-    string? Profession,
+    ProfessionDto Profession,
     string? Education,
     string? LastPositionFirm,
     string? LastPositionName,

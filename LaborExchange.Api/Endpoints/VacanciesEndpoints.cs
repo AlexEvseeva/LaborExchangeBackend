@@ -1,4 +1,5 @@
 ﻿using LaborExchange.Api.Dto.Vacancies;
+using LaborExchange.Api.Endpoints;
 using LaborExchange.Api.Mapping;
 
 namespace LaborExchange.Api;
@@ -10,7 +11,7 @@ public static class VacanciesEndpoints
         new (
             1,
             "Dark side",
-            "Дегустатор печива",
+            ProfessionsEndpoints.professions[5],
             "Цілодобово",
             10000,
             "Можливо ночувати в офісі під столом",
@@ -19,7 +20,7 @@ public static class VacanciesEndpoints
         new (
             2,
             "Light Side",
-            "Молодший помічник молодшого двірник",
+            ProfessionsEndpoints.professions[4],
             null,
             0,
             null,
@@ -39,20 +40,28 @@ public static class VacanciesEndpoints
 
         group.MapPost("/", (CreateVacancyDto newVacancy) => {
             var index = vacancies.Max(vacancy => vacancy.Id) + 1;
-            var vacancy = newVacancy.ToDto(index);
-            vacancies.Add(vacancy);
+            var profession = ProfessionsEndpoints.professions.Find( prof => prof.Id == newVacancy.ProfessionId);
+            
+            if(profession != null){
+                var vacancy = newVacancy.ToDto(index, profession);
+                vacancies.Add(vacancy);
 
-            return Results.CreatedAtRoute(VACANIES_ENDPOINT_NAME, new {id = vacancy.Id}, vacancy);
+                return Results.CreatedAtRoute(VACANIES_ENDPOINT_NAME, new {id = vacancy.Id}, vacancy);
+            } else {
+                return Results.NotFound();
+            }
+            
         });
 
         group.MapPut("/{id}", (int id, UpdateVacancyDto updatedVacancy) => {
             var index = vacancies.FindIndex(vacancy => vacancy.Id == id);
+            var profession = ProfessionsEndpoints.professions.Find( prof => prof.Id == updatedVacancy.ProfessionId);
             var vacancy = vacancies[index];
-            if(vacancy == null){
+            if(vacancy == null || profession == null) {
                 return Results.NotFound();
             }
             else {
-                vacancies[index] = updatedVacancy.ToDto(); 
+                vacancies[index] = updatedVacancy.ToDto(profession); 
                 return Results.NoContent();
             }
         });

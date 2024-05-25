@@ -1,25 +1,26 @@
-﻿using LaborExchange.Api.Dto.Vacancies;
+﻿using LaborExchange.Api.Dto.Profession;
+using LaborExchange.Api.Dto.Vacancies;
 
 namespace LaborExchange.Api.Mapping;
 
 public static class VacancyMapping
 {
-    public static VacancyDto ToDto(this CreateVacancyDto newVacancy, int id) =>
+    public static VacancyDto ToDto(this CreateVacancyDto newVacancy, int id, ProfessionDto profession) =>
     new VacancyDto(
         id,
         newVacancy.FirmName,
-        newVacancy.Position,
+        profession,
         newVacancy.WorkingCondition,
         newVacancy.Payment,
         newVacancy.LivingCondition,
         newVacancy.Requirements
     );
 
-    public static VacancyDto ToDto(this UpdateVacancyDto newVacancy) =>
+    public static VacancyDto ToDto(this UpdateVacancyDto newVacancy, ProfessionDto profession) =>
     new VacancyDto(
         newVacancy.Id,
         newVacancy.FirmName,
-        newVacancy.Position,
+        profession,
         newVacancy.WorkingCondition,
         newVacancy.Payment,
         newVacancy.LivingCondition,

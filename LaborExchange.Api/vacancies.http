@@ -9,7 +9,7 @@ Content-Type: application/json
 
 {
     "firmName" : "Light Side",
-    "position" : "Старший помічник молодшого двірник",
+    "ProfessionId" : 2,
     "requirements" : "Мати власту лопату"
 }
 
@@ -20,7 +20,7 @@ Content-Type: application/json
 {
     "id": 2,
     "firmName": "Light Side",
-    "position": "Молодший помічник молодшого двірник",
+    "ProfessionId": 3,
     "workingCondition": null,
     "payment": 0,
     "livingCondition": null,

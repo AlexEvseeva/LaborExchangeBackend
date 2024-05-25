@@ -1,15 +1,16 @@
-﻿using LaborExchange.Api.Dto.Resume;
+﻿using LaborExchange.Api.Dto.Profession;
+using LaborExchange.Api.Dto.Resume;
 
 namespace LaborExchange.Api.Mapping;
 
 public static class ResumeMapping
 {
-    public static ResumeDto ToDto(this CreateResumeDto newResume, int id) =>
+    public static ResumeDto ToDto(this CreateResumeDto newResume, int id, ProfessionDto profession) =>
     new ResumeDto(
         id,
         newResume.FirstName,
         newResume.LastName,
-        newResume.Profession,
+        profession,
         newResume.Education,
         newResume.LastPositionFirm,
         newResume.LastPositionName,
@@ -21,12 +22,12 @@ public static class ResumeMapping
         newResume.Requirements
     );
 
-    public static ResumeDto ToDto(this UpdateResumeDto updateResume) =>
+    public static ResumeDto ToDto(this UpdateResumeDto updateResume, ProfessionDto profession) =>
     new ResumeDto(
         updateResume.Id,
         updateResume.FirstName,
         updateResume.LastName,
-        updateResume.Profession,
+        profession,
         updateResume.Education,
         updateResume.LastPositionFirm,
         updateResume.LastPositionName,
