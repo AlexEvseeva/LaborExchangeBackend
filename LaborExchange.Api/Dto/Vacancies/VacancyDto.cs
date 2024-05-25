@@ -1,6 +1,6 @@
-﻿namespace LaborExchange.Api.Dto;
+﻿namespace LaborExchange.Api.Dto.Vacancies;
 
-public record class VacancyDto (
+public record class VacancyDto(
     int Id,
     string FirmName,
     string Position,

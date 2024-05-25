@@ -1,4 +1,4 @@
-﻿using LaborExchange.Api.Dto;
+﻿using LaborExchange.Api.Dto.Vacancies;
 
 namespace LaborExchange.Api;
 
