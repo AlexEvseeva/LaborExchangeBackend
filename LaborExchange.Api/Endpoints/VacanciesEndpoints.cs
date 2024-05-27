@@ -1,32 +1,19 @@
 ﻿using LaborExchange.Api.Dto.Vacancies;
 using LaborExchange.Api.Endpoints;
 using LaborExchange.Api.Mapping;
+using System.Text.Json;
 
 namespace LaborExchange.Api;
 
 public static class VacanciesEndpoints
 {
+    const string fileName = "VacanciesSaveFile.txt";
+    static VacanciesEndpoints(){
+        LoadFromFile();
+    }
     const string VACANIES_ENDPOINT_NAME = "getVacancies";
-    private static List<VacancyDto> vacancies = [
-        new (
-            1,
-            "Dark side",
-            ProfessionsEndpoints.professions[5],
-            "Цілодобово",
-            10000,
-            "Можливо ночувати в офісі під столом",
-            "Здорова система травлення"
-        ),
-        new (
-            2,
-            "Light Side",
-            ProfessionsEndpoints.professions[4],
-            null,
-            0,
-            null,
-            "Мати власту лопату"
-        )
-    ];
+    private static List<VacancyDto> vacancies = new();
+
     public static RouteGroupBuilder MapVacanciesEndpoints(this WebApplication app){
         var group = app.MapGroup("vacancies").WithParameterValidation();
         group.MapGet("/", () => vacancies);
@@ -46,11 +33,11 @@ public static class VacanciesEndpoints
                 var vacancy = newVacancy.ToDto(index, profession);
                 vacancies.Add(vacancy);
 
+                SaveToFile();
                 return Results.CreatedAtRoute(VACANIES_ENDPOINT_NAME, new {id = vacancy.Id}, vacancy);
             } else {
                 return Results.NotFound();
             }
-            
         });
 
         group.MapPut("/{id}", (int id, UpdateVacancyDto updatedVacancy) => {
@@ -62,6 +49,7 @@ public static class VacanciesEndpoints
             }
             else {
                 vacancies[index] = updatedVacancy.ToDto(profession); 
+                SaveToFile();
                 return Results.NoContent();
             }
         });
@@ -70,6 +58,7 @@ public static class VacanciesEndpoints
             var vacancy = vacancies.Find(vacancy => vacancy.Id == id);
             if(vacancy != null){
                 vacancies.Remove(vacancy);
+                SaveToFile();
             }
             return Results.NoContent();
         });
@@ -77,5 +66,13 @@ public static class VacanciesEndpoints
         return group;
     }   
 
+    static void SaveToFile() {
+            string jsonString = JsonSerializer.Serialize(vacancies);
+            File.WriteAllText(fileName, jsonString);
+    }
 
+    static void LoadFromFile(){
+        var jsonString = File.ReadAllText(fileName);
+        vacancies = JsonSerializer.Deserialize<List<VacancyDto>>(jsonString)  ?? [];
+    }
 }

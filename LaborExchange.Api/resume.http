@@ -23,7 +23,7 @@ Content-Type: application/json
 }
 
 ###
-PUT http://localhost:5109/resume/3
+PUT http://localhost:5109/resume/
 Content-Type: application/json
 
 {
