@@ -11,6 +11,7 @@ public static class VacanciesEndpoints
     static VacanciesEndpoints(){
         LoadFromFile();
     }
+    
     const string VACANIES_ENDPOINT_NAME = "getVacancies";
     private static List<VacancyDto> vacancies = new();
 

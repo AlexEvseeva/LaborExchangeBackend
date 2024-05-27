@@ -9,5 +9,6 @@ public record class VacancyDto(
     string? WorkingCondition,
     decimal Payment,
     string? LivingCondition,
-    string Requirements
+    string Requirements,
+    bool IsArchived
 );

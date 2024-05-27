@@ -9,5 +9,6 @@ public record class CreateVacancyDto
     string WorkingCondition,
     [Range(0, 120_000_000)] decimal Payment,
     string LivingCondition,
-    [Required] string Requirements
+    [Required] string Requirements,
+    bool IsArchived
 );

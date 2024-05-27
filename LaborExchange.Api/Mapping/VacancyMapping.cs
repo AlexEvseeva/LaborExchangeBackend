@@ -13,7 +13,8 @@ public static class VacancyMapping
         newVacancy.WorkingCondition,
         newVacancy.Payment,
         newVacancy.LivingCondition,
-        newVacancy.Requirements
+        newVacancy.Requirements,
+        newVacancy.IsArchived
     );
 
     public static VacancyDto ToDto(this UpdateVacancyDto newVacancy, ProfessionDto profession) =>
@@ -24,6 +25,7 @@ public static class VacancyMapping
         newVacancy.WorkingCondition,
         newVacancy.Payment,
         newVacancy.LivingCondition,
-        newVacancy.Requirements
+        newVacancy.Requirements,
+        newVacancy.IsArchived
     );
 }
