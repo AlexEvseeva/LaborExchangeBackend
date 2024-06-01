@@ -1,6 +1,7 @@
 ﻿using LaborExchange.Api.Dto.Vacancies;
 using LaborExchange.Api.Endpoints;
 using LaborExchange.Api.Mapping;
+using Microsoft.AspNetCore.Mvc;
 using System.Text.Json;
 
 namespace LaborExchange.Api;
@@ -17,7 +18,39 @@ public static class VacanciesEndpoints
 
     public static RouteGroupBuilder MapVacanciesEndpoints(this WebApplication app){
         var group = app.MapGroup("vacancies").WithParameterValidation();
+
         group.MapGet("/", () => vacancies);
+
+        group.MapGet("/search", (HttpRequest request) => 
+        {
+            if(!request.Query.ContainsKey("query") || string.IsNullOrEmpty(request.Query["query"])){
+                return new List<VacancyDto>();
+            }
+            var query = request.Query["query"][0];
+
+            if(query != "")
+            {
+                List<VacancyDto> filtered = new();
+                ArgumentNullException.ThrowIfNullOrEmpty(query);
+                foreach (var vacancy in vacancies)
+                {
+                    if (vacancy.FirmName.Contains(query, StringComparison.OrdinalIgnoreCase) 
+                        || vacancy.Position.Name.Contains(query, StringComparison.OrdinalIgnoreCase)
+                        || vacancy.WorkingCondition?.Contains(query, StringComparison.OrdinalIgnoreCase) == true
+                        || vacancy.LivingCondition?.Contains(query, StringComparison.OrdinalIgnoreCase) == true
+                        || vacancy.Requirements.Contains(query, StringComparison.OrdinalIgnoreCase)    
+                    )
+                    {
+                        filtered.Add(vacancy);
+                    }
+                }    
+                return filtered; 
+            } else
+            {
+                return [];
+            }
+            
+        });
 
         group.MapGet("/{id}", (int id) => 
             {

@@ -1,6 +1,8 @@
 GET http://localhost:5109/vacancies
 
 ###
+GET http://localhost:5109/vacancies/search?query=Дегустатор
+###
 GET http://localhost:5109/vacancies/2
 
 ###

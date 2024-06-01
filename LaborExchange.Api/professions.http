@@ -1,1 +1,9 @@
 GET http://localhost:5109/professions
+
+###
+POST http://localhost:5109/professions
+Content-Type: application/json
+
+{
+    "name": "Слюсар"
+}
