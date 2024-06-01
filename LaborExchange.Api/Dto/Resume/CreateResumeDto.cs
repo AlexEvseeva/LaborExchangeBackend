@@ -15,5 +15,6 @@ public record class CreateResumeDto
     string? LivingCondition,
     string? Email,
     string? Phone,
-    string? Requirements
+    string? Requirements,
+    DateOnly DateOfBirth
 );

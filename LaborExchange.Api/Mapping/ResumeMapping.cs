@@ -19,7 +19,8 @@ public static class ResumeMapping
         newResume.LivingCondition,
         newResume.Email,
         newResume.Phone,
-        newResume.Requirements
+        newResume.Requirements,
+        newResume.DateOfBirth
     );
 
     public static ResumeDto ToDto(this UpdateResumeDto updateResume, ProfessionDto profession) =>
@@ -36,6 +37,7 @@ public static class ResumeMapping
         updateResume.LivingCondition,
         updateResume.Email,
         updateResume.Phone,
-        updateResume.Requirements
+        updateResume.Requirements,
+        updateResume.DateOfBirth
     ); 
 }

@@ -16,5 +16,6 @@ public record class UpdateResumeDto
     string? LivingCondition,
     string? Email,
     string? Phone,
-    string? Requirements
+    string? Requirements,
+    DateOnly DateOfBirth
 );
