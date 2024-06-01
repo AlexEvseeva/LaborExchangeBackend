@@ -10,5 +10,6 @@ public record class VacancyDto(
     decimal Payment,
     string? LivingCondition,
     string Requirements,
+    string Contacts,
     bool IsArchived
 );

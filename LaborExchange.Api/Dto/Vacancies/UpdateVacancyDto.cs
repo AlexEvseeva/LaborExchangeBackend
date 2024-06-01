@@ -11,5 +11,6 @@ public record class UpdateVacancyDto
     [Range(0, 120_000_000)] decimal Payment,
     string LivingCondition,
     [Required] string Requirements,
+    [Required] string Contacts,
     bool IsArchived
 );

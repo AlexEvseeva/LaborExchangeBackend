@@ -14,6 +14,7 @@ public static class VacancyMapping
         newVacancy.Payment,
         newVacancy.LivingCondition,
         newVacancy.Requirements,
+        newVacancy.Contacts,
         newVacancy.IsArchived
     );
 
@@ -26,6 +27,7 @@ public static class VacancyMapping
         newVacancy.Payment,
         newVacancy.LivingCondition,
         newVacancy.Requirements,
+        newVacancy.Contacts,
         newVacancy.IsArchived
     );
 }
